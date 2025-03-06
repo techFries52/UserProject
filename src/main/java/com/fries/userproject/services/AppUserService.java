@@ -4,5 +4,6 @@ import com.fries.userproject.models.AppUser;
 
 public interface AppUserService{
 
-    AppUser getUserById(Long id);
+    AppUser findUserById(Long id);
+    AppUser save(AppUser appUser);
 }

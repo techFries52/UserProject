@@ -15,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class AppUser implements Serializable, UserDetails {
+public class AppUser implements Serializable {
 
     @Id
     @SequenceGenerator(
@@ -34,51 +34,11 @@ public class AppUser implements Serializable, UserDetails {
     private String email;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
-    private Boolean locked;
-    private Boolean enabled;
 
-    public AppUser(String username, String password, String name, AppUserRole appUserRole, Boolean locked, Boolean enabled) {
+    public AppUser(String username, String password, String name) {
         this.username = username;
         this.password = password;
         this.name = name;
-        this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority((appUserRole.name()));
-        return Collections.singletonList(authority);
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return !locked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
 }
