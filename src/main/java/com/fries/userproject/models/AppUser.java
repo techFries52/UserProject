@@ -19,13 +19,13 @@ public class AppUser implements Serializable {
 
     @Id
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "user_sequence",
+            sequenceName = "user_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "user_sequence"
     )
     private Long id;
     private String username;
@@ -34,6 +34,8 @@ public class AppUser implements Serializable {
     private String email;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
+    @Enumerated(EnumType.STRING)
+    private AppUserColor appUserColor;
 
     public AppUser(String username, String password, String name) {
         this.username = username;
